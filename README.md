@@ -1,16 +1,20 @@
 # flutter_clean_architecture
 
-A new Flutter application.
+A flutter project using clean architecture
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+Inspiration for using this:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+We know that the bad code slow us down, why we write bad code? The 
+answer is i have to go faster (you don't go faster writing crappy), 
+if you wanna go fast do a good job. 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+How this work:
+
+Layers
+
+Widget -> View Presentation (bloc,vm,presenter ...) -> useCase 
+-> repository -> dataSources -> (remote/local) 
