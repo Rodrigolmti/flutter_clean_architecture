@@ -1,12 +1,16 @@
 import 'package:flutter_clean_architecture/core/app_result.dart';
 import 'package:flutter_clean_architecture/data/local/local_data_source.dart';
 import 'package:flutter_clean_architecture/data/remote/remote_data_source.dart';
-import 'package:flutter_clean_architecture/di/service_locator.dart';
 import 'package:flutter_clean_architecture/domain/repository/repository.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
+@RegisterAs(Repository)
 class AppRepository implements Repository {
-  static final remoteDataSource = serviceLocator<RemoteDataSource>();
-  static final localDataSource = serviceLocator<LocalDataSource>();
+  final RemoteDataSource remoteDataSource;
+  final LocalDataSource localDataSource;
+
+  AppRepository(this.remoteDataSource, this.localDataSource);
 
   @override
   Future<AppResult> getWeatherByCityName(String cityName) =>

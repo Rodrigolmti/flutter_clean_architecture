@@ -6,9 +6,12 @@ import 'package:flutter_clean_architecture/core/contants.dart';
 import 'package:flutter_clean_architecture/data/http_manager/http_manager.dart';
 import 'package:flutter_clean_architecture/domain/exceptions/app_exceptions.dart';
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 
 const timeout = Duration(seconds: 3);
 
+@injectable
+@RegisterAs(HttpManager)
 class AppHttpManager implements HttpManager {
 
   @override

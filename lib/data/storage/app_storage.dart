@@ -1,10 +1,13 @@
 import 'package:flutter_clean_architecture/data/storage/storage.dart';
-import 'package:flutter_clean_architecture/di/service_locator.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@injectable
+@RegisterAs(Storage)
 class AppStorage implements Storage {
-  static final SharedPreferences _preferences =
-      serviceLocator<SharedPreferences>();
+  final SharedPreferences _preferences;
+
+  AppStorage(this._preferences);
 
   final String _cityNames = "key_city_names";
 

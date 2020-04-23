@@ -16,7 +16,7 @@ class _HomePageState extends WidgetSate<HomePage, HomeBloc> {
   @override
   void initState() {
     bloc.streamController.stream.listen((data) {
-      if (data is Failure) showError(data.message);
+      if (data is Failure) _showError(data.message);
       if (data is OnGetSavedCities) {
         setState(() {
           _cities.clear();
@@ -75,7 +75,7 @@ class _HomePageState extends WidgetSate<HomePage, HomeBloc> {
                       bloc.onGetWeatherByCityName(value);
                     },
                   ),
-                  listOfCities()
+                  _listOfCities()
                 ],
               ),
             );
@@ -91,7 +91,7 @@ class _HomePageState extends WidgetSate<HomePage, HomeBloc> {
                     bloc.onGetWeatherByCityName(value);
                   },
                 ),
-                listOfCities()
+                _listOfCities()
               ],
             ),
           );
@@ -100,7 +100,7 @@ class _HomePageState extends WidgetSate<HomePage, HomeBloc> {
     );
   }
 
-  Widget listOfCities() {
+  Widget _listOfCities() {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       itemCount: _cities.length,
@@ -114,7 +114,7 @@ class _HomePageState extends WidgetSate<HomePage, HomeBloc> {
     );
   }
 
-  void showError(String message) {
+  void _showError(String message) {
     _scaffoldKey.currentState.showSnackBar(SnackBar(
       content: Text(
         message,
