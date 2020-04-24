@@ -47,13 +47,13 @@ class AppResult<T> {
     return this;
   }
 
-  AppResult<T> flatMap({Function onSuccess, Function onError}) {
+  AppResult<T> flatMap({Function(T) onSuccess, Function(String) onError}) {
     switch (status) {
       case Status.SUCCESS:
-        onSuccess(status);
+        onSuccess(data);
         break;
       case Status.FAILURE:
-        onSuccess(message);
+        onError(message);
         break;
     }
     return this;
