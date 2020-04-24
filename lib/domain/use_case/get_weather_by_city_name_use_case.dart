@@ -10,7 +10,6 @@ abstract class GetWeatherByCityNameUseCase {
 @injectable
 @RegisterAs(GetWeatherByCityNameUseCase)
 class GetWeatherByCityName implements GetWeatherByCityNameUseCase {
-
   final Repository repository;
   final SaveCityNameUseCase saveCityNameUseCase;
 
@@ -19,13 +18,7 @@ class GetWeatherByCityName implements GetWeatherByCityNameUseCase {
   @override
   Future<AppResult> execute(String cityName) async {
     final response = await repository.getWeatherByCityName(cityName);
-    switch (response.status) {
-      case Status.SUCCESS:
-        saveCityNameUseCase.execute(cityName);
-        return AppResult.success(response.data);
-        break;
-      default:
-        return AppResult.failure(response.message);
-    }
+    response.mapSuccess((data) => saveCityNameUseCase.execute(cityName));
+    return response;
   }
 }
