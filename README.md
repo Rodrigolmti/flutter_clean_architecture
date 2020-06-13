@@ -1,4 +1,4 @@
-# flutter_clean_architecture
+# Flutter Clean Architecture
 
 A flutter project using clean architecture by Uncle Bob
 
@@ -19,5 +19,5 @@ Widget -> View Presentation (bloc,vm,presenter ...) -> useCase
 
 In this project i'm using Mobx to handle state management, this is my interpretation of clean
 architecture, and does not mean that this is the right way. Recently i'm testing a more simple way
-to use the clean architecture, because some this this approach can be boilerplate for some projects,
+to use the clean architecture, because some times this approach can be boilerplate for some projects,
 use wisely.
