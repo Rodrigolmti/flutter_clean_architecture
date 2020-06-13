@@ -1,5 +1,5 @@
 abstract class Storage {
-  void saveCityName(String cityName);
+  Future<void> saveCityName(String cityName);
 
-  List<String> getCityNames();
+  Future<List<String>> getCityNames();
 }

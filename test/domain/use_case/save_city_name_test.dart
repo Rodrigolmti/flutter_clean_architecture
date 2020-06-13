@@ -5,13 +5,13 @@ import 'package:mockito/mockito.dart';
 import '../../util/test_stubs.dart';
 
 void main() {
-  final MockAppRepository repository = MockAppRepository();
-  final SaveCityNameUseCase useCase = SaveCityName(repository);
+  final repository = MockAppRepository();
+  final useCase = SaveCityName(repository);
 
-  final String cityName = "London";
+  const cityName = 'London';
 
   test('execute should call save method', () async {
-    useCase.execute(cityName);
+    await useCase(cityName);
 
     verify(repository.saveCityName(cityName));
   });

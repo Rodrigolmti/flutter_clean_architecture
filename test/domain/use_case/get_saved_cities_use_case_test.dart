@@ -5,21 +5,20 @@ import 'package:mockito/mockito.dart';
 import '../../util/test_stubs.dart';
 
 void main() {
-  final MockAppRepository repository = MockAppRepository();
-  final GetSavesCitiesUseCase useCase = GetSavesCities(repository);
+  final repository = MockAppRepository();
+  final useCase = GetSavesCities(repository);
 
   test('execute should call get method', () async {
-    useCase.execute();
+    await useCase();
 
     verify(repository.getCityNames());
   });
 
   test('execute should return city names list', () async {
-    final cities = ["Seatle", "Rio", "Sao Paulo"];
-    when(repository.getCityNames())
-        .thenAnswer((_) => cities);
+    final cities = ['Seatle', 'Rio', 'Sao Paulo'];
+    when(repository.getCityNames()).thenAnswer((_) async => cities);
 
-    final result = useCase.execute();
+    final result = await useCase();
 
     verify(repository.getCityNames());
     expect(cities, result);

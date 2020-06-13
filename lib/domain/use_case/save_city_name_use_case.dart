@@ -1,8 +1,8 @@
 import 'package:flutter_clean_architecture/domain/repository/repository.dart';
 import 'package:injectable/injectable.dart';
 
-abstract class SaveCityNameUseCase {
-  void execute(String cityName);
+mixin SaveCityNameUseCase {
+  Future<void> call(String cityName);
 }
 
 @injectable
@@ -13,5 +13,6 @@ class SaveCityName implements SaveCityNameUseCase {
   SaveCityName(this.repository);
 
   @override
-  void execute(String cityName) => repository.saveCityName(cityName);
+  Future<void> call(String cityName) async =>
+      repository.saveCityName(cityName);
 }

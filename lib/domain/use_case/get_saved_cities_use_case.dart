@@ -1,8 +1,8 @@
 import 'package:flutter_clean_architecture/domain/repository/repository.dart';
 import 'package:injectable/injectable.dart';
 
-abstract class GetSavesCitiesUseCase {
-  List<String> execute();
+mixin GetSavesCitiesUseCase {
+  Future<List<String>> call();
 }
 
 @injectable
@@ -13,5 +13,5 @@ class GetSavesCities implements GetSavesCitiesUseCase {
   GetSavesCities(this.repository);
 
   @override
-  List<String> execute() => repository.getCityNames();
+  Future<List<String>> call() async => repository.getCityNames();
 }

@@ -1,3 +1,3 @@
-abstract class RemoteService {
+mixin RemoteService {
   Future<dynamic> getWeatherByCityName(String cityName);
 }

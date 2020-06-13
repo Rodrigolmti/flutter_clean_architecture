@@ -1,6 +1,6 @@
+import 'package:flutter_clean_architecture/data/data_source/local/local_data_source.dart';
+import 'package:flutter_clean_architecture/data/data_source/remote/remote_data_source.dart';
 import 'package:flutter_clean_architecture/data/http_manager/http_manager.dart';
-import 'package:flutter_clean_architecture/data/local/local_data_source.dart';
-import 'package:flutter_clean_architecture/data/remote/remote_data_source.dart';
 import 'package:flutter_clean_architecture/data/service/remote_service.dart';
 import 'package:flutter_clean_architecture/domain/repository/repository.dart';
 import 'package:mockito/mockito.dart';

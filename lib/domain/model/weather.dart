@@ -1,8 +1,13 @@
 class Weather {
-  String main;
-  String description;
-  double temp;
-  double feelsLike;
+  final String main;
+  final String description;
+  final double temp;
+  final double feelsLike;
 
-  Weather({this.main, this.description, this.temp, this.feelsLike});
+  const Weather({
+    this.main,
+    this.description,
+    this.temp,
+    this.feelsLike,
+  });
 }

@@ -3,25 +3,28 @@ description: Example project using clean archtecture on flutter
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^0.1.2
-  http: ^0.12.0+2
-  get_it: ^3.0.1
   shared_preferences: ^0.4.2
-  json_annotation: ^3.0.1
+  cupertino_icons: ^0.1.2
+  json_annotation: 3.0.1
+  flutter_mobx: ^1.1.0
   injectable: ^0.3.0
+  http: ^0.12.0+2
+  get_it: ^4.0.2
+  mobx: ^1.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^4.1.0
-  build_runner: ^1.0.0
   injectable_generator: ^0.3.0
-  json_serializable: ^3.0.1
+  json_serializable: 3.2.5
+  mobx_codegen: ^1.1.0
+  build_runner: 1.7.1
+  mockito: ^4.1.0
 
 flutter:
   uses-material-design: true

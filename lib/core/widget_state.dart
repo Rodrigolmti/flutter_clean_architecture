@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/core/bloc.dart';
 import 'package:flutter_clean_architecture/di/di.dart';
+import 'package:mobx/mobx.dart';
 
-abstract class WidgetSate<T extends StatefulWidget, B extends Bloc> extends State<T> {
-  B bloc;
-
-  WidgetSate() {
-    bloc = getIt<B>();
-  }
-
-  @override
-  void dispose() {
-    bloc.onDispose();
-    super.dispose();
-  }
+abstract class WidgetSate<Widget extends StatefulWidget,
+    Controller extends Store> extends State<Widget> {
+  final Controller controller = getIt<Controller>();
 }

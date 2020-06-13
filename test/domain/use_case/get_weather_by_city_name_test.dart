@@ -1,4 +1,5 @@
-import 'package:flutter_clean_architecture/core/app_result.dart';
+import 'package:flutter_clean_architecture/domain/exceptions/app_exceptions.dart';
+import 'package:flutter_clean_architecture/domain/model/weather.dart';
 import 'package:flutter_clean_architecture/domain/use_case/get_weather_by_city_name_use_case.dart';
 import 'package:flutter_clean_architecture/domain/use_case/save_city_name_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -7,32 +8,43 @@ import 'package:mockito/mockito.dart';
 import '../../util/test_stubs.dart';
 
 void main() {
-  final MockAppRepository repository = MockAppRepository();
-  final SaveCityNameUseCase saveCityNameUseCase = SaveCityName(repository);
-  final GetWeatherByCityNameUseCase useCase =
-      GetWeatherByCityName(repository, saveCityNameUseCase);
+  final repository = MockAppRepository();
+  final saveCityNameUseCase = SaveCityName(repository);
+  final useCase = GetWeatherByCityName(repository, saveCityNameUseCase);
 
-  final String cityName = "London";
+  const cityName = 'London';
 
   test('execute should return weather forecast', () async {
-    when(repository.getWeatherByCityName(any))
-        .thenAnswer((_) async => AppResult.success());
+    const weather = Weather();
+    when(repository.getWeatherByCityName(any)).thenAnswer((_) async => weather);
 
-    final response = await useCase.execute(cityName);
+    final response = await useCase(cityName);
 
-    expect(Status.SUCCESS, response.status);
-    verify(saveCityNameUseCase.execute(cityName));
+    expect(weather, response);
+  });
+
+  test('execute should call repository method', () async {
+    const weather = Weather();
+    when(repository.getWeatherByCityName(any)).thenAnswer((_) async => weather);
+
+    await useCase(cityName);
+
     verify(repository.getWeatherByCityName(cityName));
   });
 
-  test('execute should return failure', () async {
-    final message = 'we got an error';
+  test('execute should save city name', () async {
+    const weather = Weather();
+    when(repository.getWeatherByCityName(any)).thenAnswer((_) async => weather);
+
+    await useCase(cityName);
+
+    verify(saveCityNameUseCase(cityName));
+  });
+
+  test('execute should thrown server failure', () async {
     when(repository.getWeatherByCityName(any))
-        .thenAnswer((_) async => AppResult.failure(message));
+        .thenThrow(ServerException());
 
-    final response = await useCase.execute(cityName);
-
-    expect(Status.FAILURE, response.status);
-    expect(message, response.message);
+    expect(() => useCase(cityName), throwsException);
   });
 }

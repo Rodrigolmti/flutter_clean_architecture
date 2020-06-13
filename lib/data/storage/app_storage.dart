@@ -2,6 +2,7 @@ import 'package:flutter_clean_architecture/data/storage/storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@singleton
 @injectable
 @RegisterAs(Storage)
 class AppStorage implements Storage {
@@ -9,20 +10,20 @@ class AppStorage implements Storage {
 
   AppStorage(this._preferences);
 
-  final String _cityNames = "key_city_names";
+  final String _cityNames = 'key_city_names';
 
   @override
-  List<String> getCityNames() {
-    final String cities = _preferences.getString(_cityNames);
+  Future<List<String>> getCityNames() async {
+    final cities = _preferences.getString(_cityNames);
     return cities != null && cities.isNotEmpty
         ? cities.split(',')
-        : List<String>();
+        : <String>[];
   }
 
   @override
-  void saveCityName(String cityName) {
-    final List<String> cities = getCityNames();
+  Future<void> saveCityName(String cityName) async {
+    final cities = await getCityNames();
     cities.add(cityName);
-    _preferences.setString(_cityNames, cities.join(','));
+    await _preferences.setString(_cityNames, cities.join(','));
   }
 }

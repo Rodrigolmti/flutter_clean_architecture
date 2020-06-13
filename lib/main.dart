@@ -6,30 +6,26 @@ import 'package:flutter_clean_architecture/ui/home_page.dart';
 
 import 'di/di.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  configureInjection();
+  await configureInjection();
 
-  runZoned<Future<Null>>(() async {
+  return runZonedGuarded(() async {
     runApp(MyApp());
-  }, onError: (error, stackTrace) async {
+  }, (error, stack) {
+    print(stack);
     print(error);
   });
 }
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: new ThemeData(
-          primarySwatch: Colors.blue,
-          canvasColor: Colors.white
-      ),
-      supportedLocales: [
-        const Locale('en'),
-      ],
-      home: HomePage(),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        theme: ThemeData(primarySwatch: Colors.blue, canvasColor: Colors.white),
+        supportedLocales: const [
+          Locale('en'),
+        ],
+        home: HomePage(),
+      );
 }

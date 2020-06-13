@@ -1,10 +1,10 @@
-import 'package:flutter_clean_architecture/core/app_result.dart';
+import 'package:flutter_clean_architecture/domain/model/weather.dart';
 
 abstract class Repository {
 
-  Future<AppResult> getWeatherByCityName(String cityName);
+  Future<Weather> getWeatherByCityName(String cityName);
 
-  void saveCityName(String cityName);
+  Future<void> saveCityName(String cityName);
 
-  List<String> getCityNames();
+  Future<List<String>> getCityNames();
 }

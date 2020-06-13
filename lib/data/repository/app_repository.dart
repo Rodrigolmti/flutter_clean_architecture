@@ -1,9 +1,10 @@
-import 'package:flutter_clean_architecture/core/app_result.dart';
-import 'package:flutter_clean_architecture/data/local/local_data_source.dart';
-import 'package:flutter_clean_architecture/data/remote/remote_data_source.dart';
+import 'package:flutter_clean_architecture/data/data_source/local/local_data_source.dart';
+import 'package:flutter_clean_architecture/data/data_source/remote/remote_data_source.dart';
+import 'package:flutter_clean_architecture/domain/model/weather.dart';
 import 'package:flutter_clean_architecture/domain/repository/repository.dart';
 import 'package:injectable/injectable.dart';
 
+@singleton
 @injectable
 @RegisterAs(Repository)
 class AppRepository implements Repository {
@@ -13,12 +14,13 @@ class AppRepository implements Repository {
   AppRepository(this.remoteDataSource, this.localDataSource);
 
   @override
-  Future<AppResult> getWeatherByCityName(String cityName) =>
+  Future<Weather> getWeatherByCityName(String cityName) async =>
       remoteDataSource.getWeatherByCityName(cityName);
 
   @override
-  List<String> getCityNames() => localDataSource.getCityNames();
+  Future<List<String>> getCityNames() async => localDataSource.getCityNames();
 
   @override
-  void saveCityName(String cityName) => localDataSource.saveCityName(cityName);
+  Future<void> saveCityName(String cityName) async =>
+      localDataSource.saveCityName(cityName);
 }
