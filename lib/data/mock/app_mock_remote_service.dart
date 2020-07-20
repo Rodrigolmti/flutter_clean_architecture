@@ -4,9 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_clean_architecture/data/service/remote_service.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
 @Named('mock')
-@RegisterAs(RemoteService)
+@Injectable(as: RemoteService)
 class AppMockRemoteService implements RemoteService {
 
   @override

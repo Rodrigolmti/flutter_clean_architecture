@@ -7,8 +7,7 @@ mixin GetWeatherByCityNameUseCase {
   Future<Weather> call(String cityName);
 }
 
-@injectable
-@RegisterAs(GetWeatherByCityNameUseCase)
+@Injectable(as: GetWeatherByCityNameUseCase)
 class GetWeatherByCityName implements GetWeatherByCityNameUseCase {
   final Repository repository;
   final SaveCityNameUseCase saveCityNameUseCase;

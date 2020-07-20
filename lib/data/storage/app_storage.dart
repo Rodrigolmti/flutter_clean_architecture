@@ -2,9 +2,7 @@ import 'package:flutter_clean_architecture/data/storage/storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@singleton
-@injectable
-@RegisterAs(Storage)
+@Singleton(as: Storage)
 class AppStorage implements Storage {
   final SharedPreferences _preferences;
 

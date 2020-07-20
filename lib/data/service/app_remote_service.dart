@@ -3,9 +3,8 @@ import 'package:flutter_clean_architecture/data/http_manager/http_manager.dart';
 import 'package:flutter_clean_architecture/data/service/remote_service.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
 @Named('default')
-@RegisterAs(RemoteService)
+@Injectable(as: RemoteService)
 class AppRemoteService implements RemoteService {
   final HttpManager httpManager;
 

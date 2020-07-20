@@ -2,9 +2,7 @@ import 'package:flutter_clean_architecture/data/data_source/local/local_data_sou
 import 'package:flutter_clean_architecture/data/storage/storage.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
-@injectable
-@RegisterAs(LocalDataSource)
+@Singleton(as: LocalDataSource)
 class AppLocalDataSource implements LocalDataSource {
   final Storage storage;
 

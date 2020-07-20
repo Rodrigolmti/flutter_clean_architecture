@@ -6,8 +6,7 @@ import 'package:flutter_clean_architecture/domain/exceptions/app_exceptions.dart
 import 'package:flutter_clean_architecture/domain/model/weather.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
-@RegisterAs(RemoteDataSource)
+@Injectable(as: RemoteDataSource)
 class AppRemoteDataSource implements RemoteDataSource {
   final ForecastResponseMapper _forecastMapper;
   final RemoteService _mockRemote;

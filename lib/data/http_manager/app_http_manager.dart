@@ -10,9 +10,7 @@ import 'package:injectable/injectable.dart';
 
 const timeout = Duration(seconds: 3);
 
-@singleton
-@injectable
-@RegisterAs(HttpManager)
+@Singleton(as: HttpManager)
 class AppHttpManager implements HttpManager {
   @override
   Future get({

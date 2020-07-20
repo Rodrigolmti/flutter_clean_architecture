@@ -12,20 +12,12 @@ Future<void> main() async {
   await configureInjection();
 
   return runZonedGuarded(() async {
-    runApp(MyApp());
+    runApp(MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.blue, canvasColor: Colors.white),
+      home: HomePage(),
+    ));
   }, (error, stack) {
     print(stack);
     print(error);
   });
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => MaterialApp(
-        theme: ThemeData(primarySwatch: Colors.blue, canvasColor: Colors.white),
-        supportedLocales: const [
-          Locale('en'),
-        ],
-        home: HomePage(),
-      );
 }

@@ -5,8 +5,7 @@ mixin GetSavesCitiesUseCase {
   Future<List<String>> call();
 }
 
-@injectable
-@RegisterAs(GetSavesCitiesUseCase)
+@Injectable(as: GetSavesCitiesUseCase)
 class GetSavesCities implements GetSavesCitiesUseCase {
   final Repository repository;
 

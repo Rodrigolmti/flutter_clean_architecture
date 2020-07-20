@@ -12,7 +12,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   json_annotation: 3.0.1
   flutter_mobx: ^1.1.0
-  injectable: ^0.3.0
+  injectable: ^1.0.0
   http: ^0.12.0+2
   get_it: ^4.0.2
   mobx: ^1.2.0
@@ -20,7 +20,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  injectable_generator: ^0.3.0
+  injectable_generator: ^1.0.0
   json_serializable: 3.2.5
   mobx_codegen: ^1.1.0
   build_runner: 1.7.1
